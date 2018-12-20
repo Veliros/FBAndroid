@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">FBAndroid</string>
+    <!-- Nodo de firebase: -->
+    <string name="nodoUsu">Usuario</string>
+</resources>

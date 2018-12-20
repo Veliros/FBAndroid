@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "780764059266",
+    "firebase_url": "https://fbandroid-e732b.firebaseio.com",
+    "project_id": "fbandroid-e732b",
+    "storage_bucket": "fbandroid-e732b.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:780764059266:android:69dd71985a32b552",
+        "android_client_info": {
+          "package_name": "com.example.marta.fbandroid"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "780764059266-559nvn4vq2fb71tjl5nh8httl7bbokl0.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.marta.fbandroid",
+            "certificate_hash": "256dd0547bc577404d57b3259170a3c825d9b7e1"
+          }
+        },
+        {
+          "client_id": "780764059266-s78i52o1lrft5jg304e0g7m7pnpuvpib.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBwlzMApSSPieSELNfvmYOheMLowAYZMaQ"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "780764059266-s78i52o1lrft5jg304e0g7m7pnpuvpib.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
