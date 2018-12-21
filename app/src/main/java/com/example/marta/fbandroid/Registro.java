@@ -13,18 +13,23 @@ import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.Query;
+import com.google.firebase.database.ValueEventListener;
 
 /**
  * Clase de registro:
  */
-public class Registro extends AppCompatActivity {
+public class Registro extends AppCompatActivity  {
     private FirebaseAuth mAuth;
     private EditText etCorreo, etPass, etNom, etApe, etDir, etUsu;
     private Button btnRegistro;
-    DatabaseReference dbr;
-    Usuario u;
+    private DatabaseReference dbr;
+    private Usuario u;
+    private int cont;
 
     private String email, password, nombre, apellidos, direccion, usuario;
 
@@ -41,9 +46,9 @@ public class Registro extends AppCompatActivity {
         etDir = (EditText) findViewById(R.id.etDir);
         etUsu = (EditText) findViewById(R.id.etUsuario);
 
+        cont = 0;
+
         btnRegistro = (Button) findViewById(R.id.btnRegistro);
-
-
         btnRegistro.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -54,10 +59,37 @@ public class Registro extends AppCompatActivity {
                 usuario = etUsu.getText().toString();
                 direccion = etDir.getText().toString();
 
-                registro(nombre, apellidos, password, email, usuario, direccion);
+                // En esta línea lo que hacemos es comprobar de que hay un usuario en la BD igual
+                Query q = dbr.orderByChild(getString(R.string.usuario)).equalTo(usuario);
+                q.addListenerForSingleValueEvent(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+
+                        for(DataSnapshot datasnapshot : dataSnapshot.getChildren()){
+                            cont++;
+                        }
+
+                        // Realizamos el registro si no hay usuario:
+                        if (cont == 0) registro(nombre, apellidos, password, email, usuario, direccion);
+                        else{
+                            cont = 0;
+                            Toast.makeText(Registro.this, "El usuario ya existe." ,
+                                    Toast.LENGTH_SHORT).show();
+                        }
+                    }
+
+                    @Override
+                    public void onCancelled(@NonNull DatabaseError databaseError) {
+                        Toast.makeText(Registro.this, "Ha habido un error en el registro." ,
+                                Toast.LENGTH_SHORT).show();
+                    }
+                });
+
 
             }
         });
+
+
     }
 
     private void registro(final String mNombre, final String mApellidos, final String mPassword, final String mEmail,

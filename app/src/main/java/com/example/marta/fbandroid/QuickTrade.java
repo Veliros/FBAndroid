@@ -1,7 +1,9 @@
 package com.example.marta.fbandroid;
 
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.Button;
 
 public class QuickTrade extends AppCompatActivity {
@@ -17,5 +19,14 @@ public class QuickTrade extends AppCompatActivity {
         btnModProd = (Button) findViewById(R.id.btnMod);
         btnBorrar = (Button) findViewById(R.id.btnBorrar);
         btnBuscarProd = (Button) findViewById(R.id.btnBuscar);
+
+        // Modificación de perfil:
+        btnAcceder.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View view) {
+                Intent i = new Intent(getApplicationContext(), Perfil.class);
+                startActivity(i);
+            }
+        });
     }
 }
